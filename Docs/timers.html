@@ -66,6 +66,30 @@
 clearTimeout(id);</code></pre>
             </div>
 
+            <div class="method-card" id="setInterval">
+                <h3>setInterval(callback, delay[, ...args])</h3>
+                <p>Repeatedly calls a <code>callback</code> with a fixed time delay between each call.</p>
+                <ul>
+                    <li><code>callback</code>: The function to execute.</li>
+                    <li><code>delay</code>: Time to wait between calls in milliseconds.</li>
+                    <li><code>...args</code>: Optional arguments passed to the callback.</li>
+                </ul>
+                <p>Returns an <code>intervalId</code> (integer).</p>
+                <div class="highlight-box">
+                    <strong>Note:</strong> Z8 enforces a minimum interval of <code>1ms</code> for <code>setInterval</code> to prevent accidental infinite synchronous loops that could lock the process.
+                </div>
+                <pre><code>setInterval(() => {
+    console.log("Heartbeat...");
+}, 1000);</code></pre>
+            </div>
+
+            <div class="method-card" id="clearInterval">
+                <h3>clearInterval(intervalId)</h3>
+                <p>Cancels a timed, repeating action which was previously established by a call to <code>setInterval()</code>.</p>
+                <pre><code>const id = setInterval(task, 100);
+clearInterval(id);</code></pre>
+            </div>
+
             <h2>💎 The Z8 Advantage: Technical Architecture</h2>
             
             <h3>1. Zero Clamping Strategy</h3>
