@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timers | Z8 Runtime</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <nav>
+        <a href="../index.html" class="logo">Z8 RUNTIME</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Docs</a>
+            <a href="https://github.com/Z8-JS/Z8-app" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <div class="container docs-layout">
+        <aside class="sidebar">
+            <h3>Overview</h3>
+            <ul>
+                <li><a href="index.html">Introduction</a></li>
+            </ul>
+            <br>
+            <h3>Global API</h3>
+            <ul>
+                <li><a href="console.html">console</a></li>
+                <li><a href="timers.html" class="active">timers</a></li>
+            </ul>
+            <br>
+            <h3>Native Modules</h3>
+            <ul>
+                <li><a href="#">fs (soon)</a></li>
+                <li><a href="#">signals (soon)</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Timers</h1>
+            <p>Z8 provides global timer functions to schedule code execution after a set period of time. These are managed by Z8's high-performance internal event loop.</p>
+            
+            <div class="method-card" id="setTimeout">
+                <h3>setTimeout(callback, delay[, ...args])</h3>
+                <p>Schedules execution of a one-time <code>callback</code> after <code>delay</code> milliseconds.</p>
+                <ul>
+                    <li><code>callback</code>: The function to run.</li>
+                    <li><code>delay</code>: Number of milliseconds to wait.</li>
+                    <li><code>...args</code>: Optional arguments to pass to the callback.</li>
+                </ul>
+                <p>Returns a numeric <code>timeoutId</code>.</p>
+                <pre><code>setTimeout((name) => {
+    console.log("Hello", name);
+}, 1000, "Zane");</code></pre>
+            </div>
+
+            <div class="method-card" id="clearTimeout">
+                <h3>clearTimeout(timeoutId)</h3>
+                <p>Cancels a timeout previously established by calling <code>setTimeout()</code>.</p>
+                <pre><code>const id = setTimeout(cb, 1000);
+clearTimeout(id);</code></pre>
+            </div>
+
+            <h2>⚡ Event Loop Performance</h2>
+            <p>Z8's event loop is designed with a "Sleep-to-Efficiency" model. When no timers are immediately due, the process sleeps at the OS level to minimize CPU usage, waking up instantly when the next timer expires or a new one is added.</p>
+            
+            <div class="method-card">
+                <h3>Benchmark Lead:</h3>
+                <p>In massive timer stress tests, Z8's event loop shows lower management overhead compared to complex runtimes, allowing for tighter scheduling and better predictability in CLI tools.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Zane V8 Project.</p>
+    </footer>
+</body>
+</html>
