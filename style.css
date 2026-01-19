@@ -238,6 +238,20 @@ pre code {
   margin-bottom: 1rem;
 }
 
+.highlight-box {
+  background: rgba(0, 210, 255, 0.1);
+  border-left: 4px solid var(--accent-blue);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 4px 12px 12px 4px;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.highlight-box strong {
+  color: var(--accent-blue);
+}
+
 /* Footer */
 footer {
   padding: 4rem 0;
