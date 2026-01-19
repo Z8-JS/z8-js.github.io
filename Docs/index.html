@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Z8 Runtime</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <nav>
+        <a href="../index.html" class="logo">Z8 RUNTIME</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Docs</a>
+            <a href="https://github.com/Z8-JS/Z8-app" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <div class="container docs-layout">
+        <aside class="sidebar">
+            <h3>Overview</h3>
+            <ul>
+                <li><a href="index.html" class="active">Introduction</a></li>
+            </ul>
+            <br>
+            <h3>Native Modules</h3>
+            <ul>
+                <li><a href="console.html">console</a></li>
+                <li><a href="#">fs (soon)</a></li>
+                <li><a href="#">signals (soon)</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Introduction</h1>
+            <p>Welcome to the Z8 documentation. Z8 is a high-performance JavaScript runtime built on top of the V8 engine, designed for speed and simplicity.</p>
+            
+            <h2>Getting Started</h2>
+            <p>To run your first script with Z8, simply pass your script file as an argument to the binary:</p>
+            <pre><code>.\z8.exe app.js</code></pre>
+
+            <h2>REPL</h2>
+            <p>Z8 features a built-in REPL (Read-Eval-Print Loop) for quick experimentation. Just run the executable without any arguments:</p>
+            <pre><code>.\z8.exe</code></pre>
+
+            <h2>Project Philosophy</h2>
+            <p>Z8 follows a "C++ First" philosophy, prioritizing direct, high-performance bindings over complex abstraction layers. Every part of Z8 is crafted to minimize overhead and maximize throughput.</p>
+        </main>
+    </div>
+
+    <footer class="container">
+        <p>&copy; 2026 Zane V8 Project.</p>
+    </footer>
+</body>
+</html>

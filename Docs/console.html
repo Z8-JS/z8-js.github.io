@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console API | Z8 Runtime</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <nav>
+        <a href="../index.html" class="logo">Z8 RUNTIME</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Docs</a>
+            <a href="https://github.com/Z8-JS/Z8-app" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <div class="container docs-layout">
+        <aside class="sidebar">
+            <h3>Overview</h3>
+            <ul>
+                <li><a href="index.html">Introduction</a></li>
+            </ul>
+            <br>
+            <h3>Native Modules</h3>
+            <ul>
+                <li><a href="console.html" class="active">console</a></li>
+                <li><a href="#">fs (soon)</a></li>
+                <li><a href="#">signals (soon)</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <h1>Console API</h1>
+            <p>The <code>console</code> module provides a simple debugging console that is similar to the JavaScript console mechanism provided by web browsers.</p>
+            
+            <div class="method-card" id="log">
+                <h3>console.log(...args)</h3>
+                <p>Prints to <code>stdout</code> with a newline. Multiple arguments can be passed, which will be separated by a space.</p>
+                <pre><code>console.log("Value:", 42);</code></pre>
+            </div>
+
+            <div class="method-card" id="error">
+                <h3>console.error(...args)</h3>
+                <p>Prints to <code>stderr</code>. On supported terminals, the output will be colored <span style="color: #ff4d4d;">red</span>.</p>
+                <pre><code>console.error("Critical Failure!");</code></pre>
+            </div>
+
+            <div class="method-card" id="warn">
+                <h3>console.warn(...args)</h3>
+                <p>Prints to <code>stdout</code>. On supported terminals, the output will be colored <span style="color: #ffcc00;">yellow</span>.</p>
+                <pre><code>console.warn("Possible memory leak detected.");</code></pre>
+            </div>
+
+            <div class="method-card" id="info">
+                <h3>console.info(...args)</h3>
+                <p>Prints to <code>stdout</code>. On supported terminals, the output will be colored <span style="color: #00d2ff;">cyan</span>.</p>
+                <pre><code>console.info("Server started on port 3000.");</code></pre>
+            </div>
+
+            <div class="method-card" id="assert">
+                <h3>console.assert(condition, ...args)</h3>
+                <p>Writes an error message to <code>stderr</code> if the <code>condition</code> is falsy. If the condition is truthy, nothing happens.</p>
+                <pre><code>console.assert(x > 10, "x is too small!", x);</code></pre>
+            </div>
+
+            <div class="method-card" id="count">
+                <h3>console.count(label)</h3>
+                <p>Logs the number of times that this particular call to <code>count()</code> has been called. Default label is <code>"default"</code>.</p>
+                <pre><code>console.count(); // default: 1
+console.count("worker"); // worker: 1</code></pre>
+            </div>
+
+            <div class="method-card" id="countReset">
+                <h3>console.countReset(label)</h3>
+                <p>Resets the counter used with <code>console.count()</code>.</p>
+                <pre><code>console.countReset("worker");</code></pre>
+            </div>
+
+            <div class="method-card" id="dir">
+                <h3>console.dir(object[, options])</h3>
+                <p>Displays an interactive list of the properties of the specified JavaScript object. In Z8, it includes a premium recursive inspector.</p>
+                <ul>
+                    <li><code>depth</code>: How many times to recurse while formatting the object. Default is <code>2</code>. Set to <code>null</code> for infinite depth.</li>
+                    <li><code>colors</code>: Whether to use ANSI color codes. Defaults to TTY status.</li>
+                </ul>
+                <pre><code>console.dir(user, { depth: null, colors: true });</code></pre>
+            </div>
+
+            <div class="method-card" id="dirxml">
+                <h3>console.dirxml(...data)</h3>
+                <p>Prints an XML/HTML representation. In Z8, it is an alias for <code>console.log()</code> which already uses the premium inspector.</p>
+                <pre><code>console.dirxml(user);</code></pre>
+            </div>
+
+            <div class="method-card" id="group">
+                <h3>console.group(...labels)</h3>
+                <p>Creates a new inline group in the console log. Subsequent console messages will be indented.</p>
+                <pre><code>console.group("My Group");
+console.log("Inside");
+console.groupEnd();</code></pre>
+            </div>
+
+            <div class="method-card" id="groupCollapsed">
+                <h3>console.groupCollapsed(...labels)</h3>
+                <p>Same as <code>console.group()</code>. Inline groups in the CLI are always expanded.</p>
+            </div>
+
+            <div class="method-card" id="groupEnd">
+                <h3>console.groupEnd()</h3>
+                <p>Exits the current inline group.</p>
+            </div>
+
+            <div class="method-card" id="time">
+                <h3>console.time(label)</h3>
+                <p>Starts a high-resolution timer. Default label is <code>"default"</code>.</p>
+                <pre><code>console.time("db-query");</code></pre>
+            </div>
+
+            <div class="method-card" id="timeLog">
+                <h3>console.timeLog(label)</h3>
+                <p>Logs the current value of the timer without stopping it.</p>
+                <pre><code>console.timeLog("db-query"); // db-query: 12.450ms</code></pre>
+            </div>
+
+            <div class="method-card" id="timeEnd">
+                <h3>console.timeEnd(label)</h3>
+                <p>Stops the timer and logs the total elapsed time. The timer is removed after this call.</p>
+                <pre><code>console.timeEnd("db-query"); // db-query: 45.670ms</code></pre>
+            </div>
+
+            <div class="method-card" id="trace">
+                <h3>console.trace(...args)</h3>
+                <p>Prints a stack trace to <code>stderr</code>, optionally preceded by a formatted message. The stack trace contains the function name, file path, line, and column numbers.</p>
+                <pre><code>console.trace("Current state:");</code></pre>
+            </div>
+
+            <div class="method-card" id="clear">
+                <h3>console.clear()</h3>
+                <p>Clears the terminal screen.</p>
+                <pre><code>console.clear();</code></pre>
+            </div>
+
+            <h2>🚀 Adaptive Buffering</h2>
+            <p>Z8 introduces a unique <strong>Adaptive Buffering</strong> strategy that solves the classic trade-off between <em>latency</em> and <em>throughput</em>. Unlike other runtimes that use fixed buffer sizes or simple line-buffering, Z8 monitors logging frequency in real-time at the C++ level.</p>
+            
+            <div class="method-card">
+                <h3>How it works:</h3>
+                <ul>
+                    <li><strong>Low Frequency:</strong> For normal logging or REPL usage (less than 20 logs per 50ms), Z8 flushes <code>stdout</code> immediately. This ensures zero-latency feedback for developers.</li>
+                    <li><strong>High Frequency:</strong> When a "burst" is detected (e.g., a massive <code>for</code> loop), Z8 automatically switches to <strong>Full 64KB Buffering</strong>. This minimizes system calls and allows Z8 to significantly outperform Node.js, Bun, and Deno in heavy I/O scenarios.</li>
+                    <li><strong>Seamless Recovery:</strong> Once the high-speed burst ends, Z8 gracefully reverts to immediate flushing.</li>
+                </ul>
+            </div>
+
+            <h3>Comparison</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: var(--glass-bg); border-radius: 12px; border: 1px solid var(--glass-border);">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--glass-border);">
+                            <th style="padding: 1rem; text-align: left;">Runtime</th>
+                            <th style="padding: 1rem; text-align: left;">Strategy</th>
+                            <th style="padding: 1rem; text-align: left;">Benefit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--glass-border);">
+                            <td style="padding: 1rem;">Node.js</td>
+                            <td style="padding: 1rem;">Fixed Small Buffer / Line</td>
+                            <td style="padding: 1rem;">Consistency</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--glass-border);">
+                            <td style="padding: 1rem;">Bun</td>
+                            <td style="padding: 1rem;">Optimized Fixed Buffers</td>
+                            <td style="padding: 1rem;">High Throughput</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 1rem; color: var(--accent-blue); font-weight: bold;">Z8</td>
+                            <td style="padding: 1rem; color: var(--accent-blue);">Adaptive Real-time Switching</td>
+                            <td style="padding: 1rem; color: var(--accent-blue);">Best of both worlds</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <footer class="container">
+        <p>&copy; 2026 Zane V8 Project.</p>
+    </footer>
+</body>
+</html>
