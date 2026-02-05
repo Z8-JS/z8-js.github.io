@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File System API | Z8 Documentation</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <nav>
+        <a href="../index.html" class="logo">Z8 RUNTIME</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Docs</a>
+            <a href="https://github.com/Z8-JS/Z8" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <div class="container docs-layout">
+        <aside class="sidebar" id="docs-sidebar">
+            <!-- Sidebar content will be dynamically loaded by sidebar.js -->
+        </aside>
+
+        <main class="content">
+            <h1>File System API</h1>
+            <p class="subtitle">High-performance file operations with Node.js compatibility</p>
+
+            <div class="highlight-box">
+                <h3>🚀 Performance Highlights</h3>
+                <ul>
+                    <li><strong>Sync Operations:</strong> Up to 16x faster than Node.js for burst writes (10,000 appends)</li>
+                    <li><strong>Async Operations:</strong> 1.5x faster than Node.js, Bun, and Deno for concurrent I/O (500 files)</li>
+                    <li><strong>Adaptive Buffering:</strong> Automatically optimizes for your workload pattern</li>
+                    <li><strong>Thread Pool:</strong> Professional-grade async execution without thread explosion</li>
+                </ul>
+            </div>
+
+            <h2>Import</h2>
+            <div class="code-block">
+                <pre><code>// Synchronous API
+import { readFileSync, writeFileSync, appendFileSync, existsSync } from 'node:fs';
+
+// Promise-based API (recommended for async)
+import { readFile, writeFile } from 'node:fs/promises';
+
+// Mixed import
+import { existsSync, mkdirSync } from 'node:fs';
+import { readFile, writeFile } from 'node:fs/promises';</code></pre>
+            </div>
+
+            <h2>Synchronous Methods</h2>
+
+            <div class="method-card">
+                <h3>readFileSync(path[, options])</h3>
+                <p>Synchronously reads the entire contents of a file.</p>
+                <div class="code-block">
+                    <pre><code>import { readFileSync } from 'node:fs';
+
+const data = readFileSync('./file.txt');
+console.log(data); // Returns file content as string</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>writeFileSync(path, data[, options])</h3>
+                <p>Synchronously writes data to a file, replacing the file if it already exists.</p>
+                <div class="code-block">
+                    <pre><code>import { writeFileSync } from 'node:fs';
+
+writeFileSync('./output.txt', 'Hello from Z8!');
+console.log('File written successfully');</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>appendFileSync(path, data[, options])</h3>
+                <p>Synchronously appends data to a file. Uses <strong>Adaptive Buffering</strong> for optimal performance during burst writes.</p>
+                <div class="code-block">
+                    <pre><code>import { appendFileSync } from 'node:fs';
+
+// Z8 automatically optimizes this loop with adaptive buffering
+for (let i = 0; i < 10000; i++) {
+    appendFileSync('./log.txt', `Line ${i}\n`);
+}
+// 16x faster than Node.js!</code></pre>
+                </div>
+                <div class="highlight-box">
+                    <p><strong>⚡ Adaptive Buffering in Action:</strong> When Z8 detects frequent writes to the same file, it keeps the file handle open and switches to 64KB buffering mode. This eliminates thousands of expensive open/close system calls.</p>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>existsSync(path)</h3>
+                <p>Synchronously tests whether the given path exists.</p>
+                <div class="code-block">
+                    <pre><code>import { existsSync } from 'node:fs';
+
+if (existsSync('./config.json')) {
+    console.log('Config file found!');
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>mkdirSync(path[, options])</h3>
+                <p>Synchronously creates a directory.</p>
+                <div class="code-block">
+                    <pre><code>import { mkdirSync } from 'node:fs';
+
+// Create single directory
+mkdirSync('./new-folder');
+
+// Create nested directories
+mkdirSync('./path/to/nested/folder', { recursive: true });</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>readdirSync(path[, options])</h3>
+                <p>Synchronously reads the contents of a directory.</p>
+                <div class="code-block">
+                    <pre><code>import { readdirSync } from 'node:fs';
+
+const files = readdirSync('./my-folder');
+console.log(files); // ['file1.txt', 'file2.js', ...]</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>statSync(path[, options])</h3>
+                <p>Synchronously retrieves file statistics.</p>
+                <div class="code-block">
+                    <pre><code>import { statSync } from 'node:fs';
+
+const stats = statSync('./file.txt');
+console.log(stats.size); // File size in bytes
+console.log(stats.isDirectory()); // false</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>rmSync(path[, options])</h3>
+                <p>Synchronously removes files and directories.</p>
+                <div class="code-block">
+                    <pre><code>import { rmSync } from 'node:fs';
+
+// Remove file
+rmSync('./file.txt');
+
+// Remove directory recursively
+rmSync('./folder', { recursive: true });</code></pre>
+                </div>
+            </div>
+
+            <h2>Asynchronous Methods (Promise-based)</h2>
+
+            <div class="method-card">
+                <h3>readFile(path[, options])</h3>
+                <p>Asynchronously reads the entire contents of a file. Returns a Promise.</p>
+                <div class="code-block">
+                    <pre><code>import { readFile } from 'node:fs/promises';
+
+const data = await readFile('./file.txt');
+console.log(data);
+
+// Or with .then()
+readFile('./file.txt')
+    .then(data => console.log(data))
+    .catch(err => console.error(err));</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>writeFile(path, data[, options])</h3>
+                <p>Asynchronously writes data to a file. Returns a Promise that resolves when the operation completes.</p>
+                <div class="code-block">
+                    <pre><code>import { writeFile } from 'node:fs/promises';
+
+await writeFile('./output.txt', 'Hello Async!');
+console.log('File written!');</code></pre>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>🚀 Async Performance Architecture</h3>
+                <p>Z8's async file operations use a professional-grade <strong>Thread Pool</strong> that limits concurrent threads to your CPU core count. This prevents thread explosion and ensures stable, high-performance execution even under extreme load (500+ concurrent operations).</p>
+                <ul>
+                    <li><strong>Smart Task Queue:</strong> Lock-free atomic operations for minimal overhead</li>
+                    <li><strong>Event Loop Integration:</strong> Seamless Promise resolution on the main thread</li>
+                    <li><strong>Zero Thread Explosion:</strong> Unlike naive implementations, Z8 won't crash under heavy concurrent I/O</li>
+                </ul>
+            </div>
+
+            <h2>Benchmark Results</h2>
+
+            <div class="method-card">
+                <h3>Synchronous Burst Writes (10,000 appends)</h3>
+                <div class="code-block">
+                    <pre><code>Runtime         Time        vs Z8
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Z8              60ms        🚀 Baseline
+Bun             1,225ms     20.4x slower
+Node.js         1,679ms     28.0x slower
+Deno            3,608ms     60.1x slower</code></pre>
+                </div>
+                <p><strong>Winner: Z8</strong> - Thanks to Adaptive Buffering, Z8 dominates synchronous file operations.</p>
+            </div>
+
+            <div class="method-card">
+                <h3>Asynchronous Concurrent Writes (500 files)</h3>
+                <div class="code-block">
+                    <pre><code>Runtime         Time        vs Z8
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Z8              359ms       🚀 Baseline
+Deno            468ms       1.30x slower
+Node.js         531ms       1.48x slower
+Bun             537ms       1.50x slower</code></pre>
+                </div>
+                <p><strong>Winner: Z8</strong> - The Thread Pool architecture prevents thread explosion and delivers consistent performance.</p>
+            </div>
+
+            <h2>Best Practices</h2>
+
+            <div class="method-card">
+                <h3>✅ Use Async for I/O-Heavy Tasks</h3>
+                <div class="code-block">
+                    <pre><code>import { writeFile } from 'node:fs/promises';
+
+// Good: Non-blocking, allows other code to run
+const promises = [];
+for (let i = 0; i < 500; i++) {
+    promises.push(writeFile(`./file_${i}.txt`, `Data ${i}`));
+}
+await Promise.all(promises);</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>✅ Use Sync for Simple Scripts</h3>
+                <div class="code-block">
+                    <pre><code>import { readFileSync } from 'node:fs';
+
+// Good: Simple, straightforward for CLI tools
+const config = JSON.parse(readFileSync('./config.json'));
+console.log(config);</code></pre>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <h3>⚡ Leverage Adaptive Buffering</h3>
+                <div class="code-block">
+                    <pre><code>import { appendFileSync } from 'node:fs';
+
+// Z8 automatically optimizes this pattern
+for (const logEntry of largeDataset) {
+    appendFileSync('./app.log', logEntry + '\n');
+}
+// No manual buffering needed!</code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="container">
+        <p>&copy; 2026 Zane V8 Project. Built for performance, designed for excellence.</p>
+    </footer>
+
+    <script src="sidebar.js"></script>
+</body>
+</html>

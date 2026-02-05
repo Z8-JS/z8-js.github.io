@@ -19,23 +19,8 @@
     </nav>
 
     <div class="container docs-layout">
-        <aside class="sidebar">
-            <h3>Overview</h3>
-            <ul>
-                <li><a href="index.html" class="active">Introduction</a></li>
-            </ul>
-            <br>
-            <h3>Global API</h3>
-            <ul>
-                <li><a href="console.html">console</a></li>
-                <li><a href="timers.html">timers</a></li>
-            </ul>
-            <br>
-            <h3>Native Modules</h3>
-            <ul>
-                <li><a href="#">fs (soon)</a></li>
-                <li><a href="#">signals (soon)</a></li>
-            </ul>
+        <aside class="sidebar" id="docs-sidebar">
+            <!-- Sidebar content will be dynamically loaded by sidebar.js -->
         </aside>
 
         <main class="content">
@@ -58,5 +43,7 @@
     <footer class="container">
         <p>&copy; 2026 Zane V8 Project.</p>
     </footer>
+    
+    <script src="sidebar.js"></script>
 </body>
 </html>

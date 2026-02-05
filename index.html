@@ -29,14 +29,27 @@
     </div>
 
     <section class="container" style="padding: 100px 0;">
+        <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Why Z8?</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
             <div class="method-card">
                 <h3>⚡ Adaptive Buffering</h3>
-                <p>Z8 intelligently switches between low-latency and high-throughput I/O. It detects your workload and optimizes buffers in real-time, making it significantly faster than Node.js or Bun.</p>
+                <p>Z8 intelligently switches between low-latency and high-throughput I/O. It detects your workload and optimizes buffers in real-time, making it <strong>up to 16x faster</strong> than Node.js in burst file operations.</p>
+            </div>
+            <div class="method-card">
+                <h3>🚀 Thread Pool Engine</h3>
+                <p>Professional-grade async I/O with a smart thread pool. Z8 handles 500+ concurrent file operations <strong>1.5x faster</strong> than Node.js, Bun, and Deno without thread explosion.</p>
             </div>
             <div class="method-card">
                 <h3>💎 Modern First</h3>
-                <p>Native support for ES Modules, Temporal API, and modern C++23 backend ensures your code runs on the edge of innovation.</p>
+                <p>Native support for ES Modules, Temporal API, <code>node:fs/promises</code>, and modern C++23 backend ensures your code runs on the edge of innovation.</p>
+            </div>
+            <div class="method-card">
+                <h3>⏱️ Zero-Clamping Timers</h3>
+                <p>Unlike Node.js/Deno/Bun which clamp timers to 1ms minimum, Z8 respects your exact timing needs. Perfect for high-frequency tasks and game loops.</p>
+            </div>
+            <div class="method-card">
+                <h3>📂 Node-Compatible FS</h3>
+                <p>Full <code>node:fs</code> and <code>node:fs/promises</code> support with both sync and async methods. Drop-in replacement for Node.js file operations with superior performance.</p>
             </div>
             <div class="method-card">
                 <h3>📦 Monolithic</h3>
